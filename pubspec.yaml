@@ -9,6 +9,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_datetime_picker_plus: ^2.2.0
+  flutter_holo_date_picker: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +23,4 @@ flutter:
   assets: 
     - assets/
     - assets/images/
+    - assets/icons/

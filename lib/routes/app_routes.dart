@@ -8,9 +8,10 @@ import 'package:facebook_ui/screens/message/message_info_screen.dart';
 import 'package:facebook_ui/screens/message/message_screen.dart';
 import 'package:facebook_ui/screens/message/new_message_screen.dart';
 import 'package:facebook_ui/screens/register/join_facbook_screen.dart';
-import 'package:facebook_ui/screens/register/select_birthday.screen.dart';
+import 'package:facebook_ui/screens/register/select_birthday_screen.dart';
 import 'package:facebook_ui/screens/register/select_gender.dart';
 import 'package:facebook_ui/screens/register/select_name_screen.dart';
+import 'package:facebook_ui/screens/register/select_number_screen.dart';
 import 'package:facebook_ui/screens/register/select_password_screen.dart';
 import 'package:facebook_ui/screens/register/term_and_privacy_screen.dart';
 import 'package:facebook_ui/screens/splash/splash_screen.dart';
@@ -76,7 +77,7 @@ class AppRoutes {
     selectName : (context) => SelectNameScreen(),
     selectBirthday : (context) => SelectBirthdayScreen(),
     selectGender : (context) => SelectGender(),
-    selectNumber : (context) => SelectNameScreen(),
+    selectNumber : (context) => SelectNumberScreen(),
     selectPass : (context) => SelectPasswordScreen(),
     termAndPrivacy : (context) => TermAndPrivacyScreen(),
     login : (context) => LoginScreen(),
