@@ -1,4 +1,5 @@
 import 'package:facebook_ui/routes/app_routes.dart';
+import 'package:facebook_ui/theme/custom_text_style.dart';
 import 'package:facebook_ui/widgets/button_ui_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -89,7 +90,7 @@ class _ProfilLoginScreenState extends State<ProfilLoginScreen> {
                 width: double.maxFinite,
                 child: GestureDetector(
                   onTap: () {
-                    
+                    Navigator.pushNamed(context, AppRoutes.login);
                   },
                   child: Row(
                     children: [
@@ -145,7 +146,9 @@ class _ProfilLoginScreenState extends State<ProfilLoginScreen> {
                 ),
               ),
               Spacer(),
-              ButtonUI(route: AppRoutes.joinFB, text: 'Create New Facebook Account')
+              ButtonUI(ontap: () {
+                  Navigator.pushNamed(context, AppRoutes.joinFB);
+                }, child: Text('Create New Facebook Account', style: CustomTextStyle.textButtonWhite,)),
             ],
           ),
         ),

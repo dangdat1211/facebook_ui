@@ -47,7 +47,9 @@ class _SelectPasswordScreenState extends State<SelectPasswordScreen> {
                   ),
                   TextFieldUI(label: 'Password', controller: _passControler, isNumberOnly: true,),
                   SizedBox(height: 100,),
-                  ButtonUI(route: AppRoutes.termAndPrivacy, text: 'Next')
+                  ButtonUI(ontap: () {
+                  Navigator.pushNamed(context, AppRoutes.termAndPrivacy);
+                }, child: Text('Next', style: CustomTextStyle.textButtonWhite,)),
           ],),
         ),
       ),

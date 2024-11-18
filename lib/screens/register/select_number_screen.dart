@@ -48,7 +48,9 @@ class _SelectNumberScreenState extends State<SelectNumberScreen> {
                   ),
                   TextFieldUI(label: 'Mobile number', controller: _numberControler, isNumberOnly: true,),
                   SizedBox(height: 100,),
-                  ButtonUI(route: AppRoutes.selectPass, text: 'Next')
+                  ButtonUI(ontap: () {
+                  Navigator.pushNamed(context, AppRoutes.selectPass);
+                }, child: Text('Next', style: CustomTextStyle.textButtonWhite,)),
           ],),
         ),
       ),

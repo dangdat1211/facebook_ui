@@ -60,7 +60,9 @@ class _SelectNameScreenState extends State<SelectNameScreen> {
                 ),
               ),
               SizedBox(height: 100,),
-              ButtonUI(route: AppRoutes.selectBirthday, text: 'Next')
+              ButtonUI(ontap: () {
+                  Navigator.pushNamed(context, AppRoutes.selectBirthday);
+                }, child: Text('Next', style: CustomTextStyle.textButtonWhite,)),
             ],
           ),
         ),

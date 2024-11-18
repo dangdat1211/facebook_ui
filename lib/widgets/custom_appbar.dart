@@ -11,19 +11,25 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: IconButton(
-        icon: Icon(Icons.chevron_left, weight: 7),
-        onPressed: () {
-          Navigator.pop(context);
-        },
+      leading: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: IconButton(
+          icon: Icon(Icons.chevron_left, weight: 7),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      title: Text(
-        title,
-        style: TextStyle(
-          fontFamily: 'SF Pro Display',
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-          color: Colors.black,
+      title: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Text(
+          title,
+          style: TextStyle(
+            fontFamily: 'SF Pro Display',
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Colors.black,
+          ),
         ),
       ),
       bottom: PreferredSize(

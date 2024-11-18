@@ -25,6 +25,17 @@ class CustomTextStyle {
     color: Color(0xFF384CFF),
   );
 
+  static const TextStyle textButtonWhite = TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    );
+
+static const TextStyle normalText =  TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
+                  );
+
 
 
   

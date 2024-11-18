@@ -1,4 +1,5 @@
 import 'package:facebook_ui/routes/app_routes.dart';
+import 'package:facebook_ui/theme/custom_text_style.dart';
 import 'package:facebook_ui/widgets/button_ui_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +74,9 @@ class _JoinFacbookScreenState extends State<JoinFacbookScreen> {
                 ),),
             
                 SizedBox(height: 50,),
-                ButtonUI(route: AppRoutes.selectName, text: 'Next'),
+                ButtonUI(ontap: () {
+                  Navigator.pushNamed(context, AppRoutes.selectName);
+                }, child: Text('Next', style: CustomTextStyle.textButtonWhite,)),
             
                 Spacer(),
             

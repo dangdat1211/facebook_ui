@@ -60,14 +60,19 @@ class _TermAndPrivacyScreenState extends State<TermAndPrivacyScreen> {
               SizedBox(
                 height: 150,
               ),
-              ButtonUI(route: AppRoutes.login, text: 'Sign up'),
+              ButtonUI(ontap: () {
+                  Navigator.pushNamed(context, AppRoutes.login);
+                }, child: Text('Sign up', style: CustomTextStyle.textButtonWhite,)),
               SizedBox(height: 20,),
               GestureDetector(
                 onTap: () {
 
                 },
                 child: Text('Sign up without updating my contact', style: CustomTextStyle.textBlue,),
-              )
+              ),
+              Spacer(),
+              Text('The Facebook company is now Meta. While our company name is changing, we are continuing to offer the same products, includingthe Facebook app from Meta. Our Data Policy and Terms of Service remain in effect, and this name change does not affect how we use or share data. Learn more about Meta and our vision for the metaverse.',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w300, color: Colors.black), textAlign: TextAlign.center,)
             ],
           ),
         ),

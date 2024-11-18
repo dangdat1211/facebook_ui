@@ -97,7 +97,9 @@ class _SelectBirthdayScreenState extends State<SelectBirthdayScreen> {
                   ),
                 ),
                 SizedBox(height: 50,),
-                ButtonUI(route: AppRoutes.selectGender, text: 'Next')
+                ButtonUI(ontap: () {
+                  Navigator.pushNamed(context, AppRoutes.selectGender);
+                }, child: Text('Next', style: CustomTextStyle.textButtonWhite,)),
               ],
             ),
           ),

@@ -1,4 +1,5 @@
-import 'package:facebook_ui/screens/login/forgot_password_screen.dart';
+import 'package:facebook_ui/screens/login/forgot_password_email_screen.dart';
+import 'package:facebook_ui/screens/login/forgot_password_mobile_screen.dart';
 import 'package:facebook_ui/screens/login/login_screen.dart';
 import 'package:facebook_ui/screens/login/new_password_screen.dart';
 import 'package:facebook_ui/screens/login/otp_screen.dart';
@@ -18,6 +19,7 @@ import 'package:facebook_ui/screens/splash/splash_screen.dart';
 import 'package:facebook_ui/screens/tap_view/friend_request_screen.dart';
 import 'package:facebook_ui/screens/tap_view/home_screen.dart';
 import 'package:facebook_ui/screens/tap_view/menu_screen.dart';
+import 'package:facebook_ui/screens/tap_view/nav_bar.dart';
 import 'package:facebook_ui/screens/tap_view/notification_screen.dart';
 import 'package:facebook_ui/screens/tap_view/personal_profile_screen.dart';
 import 'package:facebook_ui/screens/tap_view/watch_video_screen.dart';
@@ -70,7 +72,13 @@ class AppRoutes {
   
   static const String messChat = '/mess_chat';
 
+  static const String forgotPassEmail = '/fogot_pass_email';
+
+  static const String navBar = '/nav_bar';
+
   static Map<String, WidgetBuilder> routes = {
+    navBar : (context) => NavBar(),
+    forgotPassEmail : (context) => ForgotPasswordEmailScreen(),
     splash : (context) => SplashScreen(),
     intro : (context) => ProfilLoginScreen(),
     joinFB :(context) => JoinFacbookScreen(),

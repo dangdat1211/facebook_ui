@@ -120,7 +120,9 @@ class _SelectGenderState extends State<SelectGender> {
                     ],
                   ),
                 SizedBox(height: 80,),
-                ButtonUI(route: AppRoutes.selectNumber, text: 'Next')
+                ButtonUI(ontap: () {Navigator.pushNamed(context, AppRoutes.selectNumber);
+                  
+                }, child: Text('Next', style: CustomTextStyle.textButtonWhite,)),
                 ])))));
   }
 }

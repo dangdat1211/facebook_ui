@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TextFieldUI extends StatelessWidget {
+class TextFieldUI extends StatefulWidget {
   final String label;
   final TextEditingController? controller;
   final double? width;
   final bool showFloatingLabel;
-  final bool isNumberOnly; // Thêm thuộc tính mới
+  final bool isNumberOnly;
+  final bool showClearButton;
+  final bool isPassword;
 
   const TextFieldUI({
     Key? key,
@@ -14,12 +16,21 @@ class TextFieldUI extends StatelessWidget {
     this.controller,
     this.width,
     this.showFloatingLabel = true,
-    this.isNumberOnly = false, // Mặc định là false
+    this.isNumberOnly = false,
+    this.showClearButton = true,
+    this.isPassword = false,
   }) : super(key: key);
 
-  // Hàm định dạng số với khoảng cách sau mỗi 5 số
+  @override
+  State<TextFieldUI> createState() => _TextFieldUIState();
+}
+
+class _TextFieldUIState extends State<TextFieldUI> {
+  bool _showPassword = false;
+  bool _hasText = false;
+
   String _formatNumberWithSpaces(String text) {
-    text = text.replaceAll(' ', ''); // Xóa khoảng trắng hiện có
+    text = text.replaceAll(' ', '');
     String result = '';
     
     for (int i = 0; i < text.length; i++) {
@@ -32,19 +43,76 @@ class TextFieldUI extends StatelessWidget {
   }
 
   @override
+  void initState() {
+    super.initState();
+    _hasText = widget.controller?.text.isNotEmpty ?? false;
+    widget.controller?.addListener(_onTextChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.controller?.removeListener(_onTextChanged);
+    super.dispose();
+  }
+
+  void _onTextChanged() {
+    if (mounted) {
+      setState(() {
+        _hasText = widget.controller?.text.isNotEmpty ?? false;
+        // Reset showPassword state when text is cleared
+        if (!_hasText) {
+          _showPassword = false;
+        }
+      });
+    }
+  }
+
+  Widget? _buildSuffixIcon() {
+    // Nếu là trường password và có text
+    if (widget.isPassword && _hasText) {
+      return IconButton(
+        icon: Icon(
+          _showPassword ? Icons.visibility : Icons.visibility_off,
+          color: Colors.grey,
+        ),
+        padding: EdgeInsets.zero,
+        constraints: BoxConstraints(),
+        onPressed: () {
+          setState(() {
+            _showPassword = !_showPassword;
+          });
+        },
+      );
+    }
+    
+    // Nếu không phải password và có showClearButton và có text
+    if (!widget.isPassword && widget.showClearButton && _hasText) {
+      return IconButton(
+        icon: Icon(Icons.close, color: Colors.grey),
+        padding: EdgeInsets.zero,
+        constraints: BoxConstraints(),
+        onPressed: () {
+          widget.controller?.clear();
+        },
+      );
+    }
+
+    return null;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
+      width: widget.width,
       child: TextField(
-        controller: controller,
+        controller: widget.controller,
         textAlignVertical: TextAlignVertical.bottom,
+        obscureText: widget.isPassword && !_showPassword,
         
-        // Thêm cấu hình cho việc nhập số
-        keyboardType: isNumberOnly ? TextInputType.number : TextInputType.text,
-        inputFormatters: isNumberOnly ? [
+        keyboardType: widget.isNumberOnly ? TextInputType.number : TextInputType.text,
+        inputFormatters: widget.isNumberOnly ? [
           FilteringTextInputFormatter.digitsOnly,
           TextInputFormatter.withFunction((oldValue, newValue) {
-            // Xử lý định dạng số
             if (newValue.text.isEmpty) return newValue;
             
             final formattedText = _formatNumberWithSpaces(newValue.text);
@@ -58,7 +126,7 @@ class TextFieldUI extends StatelessWidget {
         ] : null,
 
         decoration: InputDecoration(
-          labelText: label,
+          labelText: widget.label,
           contentPadding: EdgeInsets.only(bottom: 2),
           labelStyle: TextStyle(
             color: Color(0xFF999999),
@@ -68,18 +136,11 @@ class TextFieldUI extends StatelessWidget {
             color: Color(0xFF384CFF),
             fontSize: 14,
           ),
-          floatingLabelBehavior: showFloatingLabel 
+          floatingLabelBehavior: widget.showFloatingLabel 
               ? FloatingLabelBehavior.auto 
               : FloatingLabelBehavior.never,
           isDense: true,
-          suffixIcon: IconButton(
-            icon: Icon(Icons.close, color: Colors.grey),
-            padding: EdgeInsets.zero,
-            constraints: BoxConstraints(),
-            onPressed: () {
-              controller?.clear();
-            },
-          ),
+          suffixIcon: _buildSuffixIcon(),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
               color: Color(0xFFAAAAAA),
